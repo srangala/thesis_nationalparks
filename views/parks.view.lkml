@@ -63,14 +63,22 @@ view: parks {
     sql: ${TABLE}.established ;;
   }
 
+  dimension: park_location {
+    type: location
+    sql_latitude: ${latitude} ;;
+    sql_longitude: ${longitude} ;;
+  }
+
   dimension: latitude {
     type: number
     sql: ${TABLE}.Latitude ;;
+    hidden: yes
   }
 
   dimension: longitude {
     type: number
     sql: ${TABLE}.Longitude ;;
+    hidden: yes
   }
 
   dimension: park_code {
@@ -81,6 +89,7 @@ view: parks {
   dimension: park_name {
     type: string
     sql: ${TABLE}.park_name ;;
+    primary_key: yes
   }
 
   dimension: state {

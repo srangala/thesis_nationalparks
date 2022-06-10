@@ -11,6 +11,12 @@ view: detailed_visits {
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Backcountry Campers" in Explore.
 
+  dimension: id {
+    primary_key: yes
+    sql: CONCAT(${TABLE}.park, ${TABLE}.month, ${TABLE}.year) ;;
+    hidden: yes
+  }
+
   dimension: backcountry_campers {
     type: number
     sql: ${TABLE}.backcountry_campers ;;

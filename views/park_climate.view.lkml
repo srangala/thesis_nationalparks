@@ -11,6 +11,12 @@ view: park_climate {
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Avg Barometric Pressure" in Explore.
 
+  dimension: id {
+    primary_key: yes
+    sql: CONCAT(${TABLE}.park, ${TABLE}.month) ;;
+    hidden: yes
+  }
+
   dimension: avg_barometric_pressure {
     type: number
     sql: ${TABLE}.avg_barometric_pressure ;;
