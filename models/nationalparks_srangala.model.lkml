@@ -52,9 +52,10 @@ explore: parks {
     sql_on: ${parks.park_name} = ${trails.area_name};;
     relationship: one_to_many
   }
-  join: park_climate {
+  join: dt_park_climate {
+    view_label: "Park Climate"
     type: left_outer
-    sql_on: ${parks.park_name} = ${park_climate.park};;
+    sql_on: ${parks.park_name} = ${dt_park_climate.park};;
     relationship: one_to_many
   }
   join: climbing {
