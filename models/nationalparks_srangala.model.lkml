@@ -49,6 +49,11 @@ explore: parks {
     sql_on: ${parks.park_name} = ${trails.area_name};;
     relationship: one_to_many
   }
+  join: dt_park_guides {
+    type: left_outer
+    sql_on: ${parks.park_name} = ${dt_park_guides.park_name};;
+    relationship: one_to_many
+  }
   join: dt_park_climate {
     view_label: "Park Climate"
     type: left_outer
