@@ -31,8 +31,26 @@ view: parks {
   }
 
   dimension: art {
+    label: "Art Link"
     type: string
     sql: ${TABLE}.Art ;;
+    html: <a href="{{ value }}" target="_blank">{{ value }}</a>;;
+  }
+
+  dimension: click_to_see_image {
+    type: string
+    sql: ${TABLE}.Art ;;
+    html:
+    <details>
+    <summary>Click to see image</summary>
+    <p><img height="100" src="{{ value }}"></img></p>
+    </details> ;;
+  }
+
+  dimension: art_image {
+    type: string
+    sql: ${TABLE}.Art ;;
+    html: <img height="450" src="{{ value }}" /> ;;
   }
 
   dimension: description {

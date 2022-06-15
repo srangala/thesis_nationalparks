@@ -69,6 +69,6 @@ view: park_species {
 
   measure: count {
     type: count
-    drill_fields: [park_name, scientific_name]
+    drill_fields: [family, species_order, common_names, scientific_name, nativeness]
   }
 }

@@ -42,8 +42,10 @@ view: dt_park_guides {
   }
 
   dimension: link {
+    label: "Guide Link"
     type: string
     sql: ${TABLE}.link ;;
+    html: <a href="{{ value }}" target="_blank">{{ value }}</a>;;
   }
 
   dimension: feature {

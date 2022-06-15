@@ -24,6 +24,7 @@ view: guides {
   dimension: link {
     type: string
     sql: ${TABLE}.link ;;
+    html: <a href="{{ value }}" target="_blank">{{ value }}</a>;;
   }
 
   dimension: park {
