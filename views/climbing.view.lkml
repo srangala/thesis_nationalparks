@@ -100,6 +100,7 @@ view: climbing {
   dimension: url {
     type: string
     sql: ${TABLE}.URL ;;
+    html: <a href="{{ value }}" target="_blank">{{ value }}</a>;;
   }
 
   measure: count {
