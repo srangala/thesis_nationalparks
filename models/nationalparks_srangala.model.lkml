@@ -26,13 +26,15 @@ persist_with: nationalparks_srangala_default_datagroup
 # Each joined view also needs to define a primary key.
 
 #explore: detailed_climate {}
-#explore: guides {}
 #explore: detailed_visits {}
 #explore: park_climate {}
 #explore: climbing {}
 #explore: trails {}
 #explore: park_species {}
 #explore: park_noaa_stations {}
+
+#for the merged results
+explore: guides {}
 
 explore: parks {
   join: park_species {
