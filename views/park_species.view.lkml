@@ -34,6 +34,11 @@ view: park_species {
   dimension: nativeness {
     type: string
     sql: ${TABLE}.Nativeness ;;
+    html:{% if value == "Native"  %}
+    <p style="color: black; background-color: lime; font-size:100%;">{{ rendered_value }}</p>
+    {% else %}
+    <p>{{ rendered_value }}</p>
+    {% endif %} ;;
   }
 
   dimension: occurrence {

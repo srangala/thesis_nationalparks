@@ -25,7 +25,8 @@ persist_with: nationalparks_srangala_default_datagroup
 # Typically, join parameters require that you define the join type, join relationship, and a sql_on clause.
 # Each joined view also needs to define a primary key.
 
-explore: guides {}
+#explore: detailed_climate {}
+#explore: guides {}
 #explore: detailed_visits {}
 #explore: park_climate {}
 #explore: climbing {}

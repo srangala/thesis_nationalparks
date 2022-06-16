@@ -11,6 +11,14 @@ view: detailed_visits {
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Backcountry Campers" in Explore.
 
+  parameter: select_measure_parameter {
+    type: unquoted
+    allowed_value: {label: "Backcountry Campers" value:"backcountry_campers"}
+    allowed_value: {label: "RV Campers" value:"rv_campers"}
+    allowed_value: {label: "Tent Campers" value:"tent_campers"}
+    allowed_value: {label: "Misc Campers" value:"misc_campers"}
+  }
+
   dimension: id {
     primary_key: yes
     sql: CONCAT(${TABLE}.park, ${TABLE}.month, ${TABLE}.year) ;;
@@ -20,6 +28,11 @@ view: detailed_visits {
   dimension: backcountry_campers {
     type: number
     sql: ${TABLE}.backcountry_campers ;;
+    html: {% if select_measure_parameter._parameter_value == 'backcountry_campers' %}
+            <p style="color: black; background-color: yellow; font-size:100%;">{{ rendered_value }}</p>
+          {% else %}
+            <p>{{ rendered_value }}</p>
+         {% endif %};;
   }
 
   # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
@@ -34,6 +47,36 @@ view: detailed_visits {
   measure: average_backcountry_campers {
     type: average
     sql: ${backcountry_campers} ;;
+    drill_fields: [park, year, month, backcountry_campers]
+  }
+
+  measure: total_misc_campers {
+    type: sum
+    sql: ${misc_campers} ;;
+  }
+
+  measure: total_tent_campers {
+    type: sum
+    sql: ${tent_campers} ;;
+  }
+
+  measure: total_rv_campers {
+    type: sum
+    sql: ${rv_campers} ;;
+  }
+
+  measure: dynamic_measure {
+    type: number
+    sql: {% if select_measure_parameter._parameter_value == 'backcountry_campers' %}
+            ${total_backcountry_campers}
+         {% elsif select_measure_parameter._parameter_value == 'rv_campers' %}
+            ${total_rv_campers}
+         {% elsif select_measure_parameter._parameter_value == 'tent_campers' %}
+            ${total_tent_campers}
+         {% else %}
+            ${total_misc_campers}
+         {% endif %};;
+    drill_fields: [park, year, month, backcountry_campers, rv_campers, tent_campers, misc_campers]
   }
 
   dimension: comments {
@@ -54,6 +97,11 @@ view: detailed_visits {
   dimension: misc_campers {
     type: number
     sql: ${TABLE}.misc_campers ;;
+    html: {% if select_measure_parameter._parameter_value == 'misc_campers' %}
+    <p style="color: black; background-color: yellow; font-size:100%;">{{ rendered_value }}</p>
+    {% else %}
+    <p>{{ rendered_value }}</p>
+    {% endif %};;
   }
 
   dimension: month {
@@ -94,11 +142,21 @@ view: detailed_visits {
   dimension: rv_campers {
     type: number
     sql: ${TABLE}.rv_campers ;;
+    html: {% if select_measure_parameter._parameter_value == 'rv_campers' %}
+    <p style="color: black; background-color: yellow; font-size:100%;">{{ rendered_value }}</p>
+    {% else %}
+    <p>{{ rendered_value }}</p>
+    {% endif %};;
   }
 
   dimension: tent_campers {
     type: number
     sql: ${TABLE}.tent_campers ;;
+    html: {% if select_measure_parameter._parameter_value == 'tent_campers' %}
+    <p style="color: black; background-color: yellow; font-size:100%;">{{ rendered_value }}</p>
+    {% else %}
+    <p>{{ rendered_value }}</p>
+    {% endif %};;
   }
 
   dimension: total_overnight_stays {
